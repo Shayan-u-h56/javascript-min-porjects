@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        background: grey;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .todo {
+        width: 40%;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        text-align: center;
+        padding: 10px 15px;
+
+    }
+
+    input {
+        margin: 15px 0px;
+        padding: 8px;
+        width: 100%;
+
+    }
+
+    button {
+        width: 20%;
+        background: black;
+        color: white;
+        font-weight: bold;
+        outline: none;
+        border: none;
+        border-radius: 8px;
+        padding: 8px;
+    }
+
+
+    .task1 {
+        margin: 15px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+
+    .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .bttn {
+        font-size: 0.7rem;
+        text-align: center;
+        padding: 6px 12px;
+        min-width: 80px;
+        cursor: pointer;
+    }
+
+    .edit {
+        font-size: 0.7rem;
+        text-align: center;
+        padding: 6px 12px;
+        min-width: 80px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="todo">
+            <h1>TODO LIST</h1>
+            <input type="text" id="userdata" placeholder="ADD ITEMS..">
+            <button type="submit" id="button">ADD</button>
+            <div class="task" id="container">
+                <!-- <div class="task1">
+                    <h3>task1</h3>
+                    <div class="btn">
+                        <button class="bttn" type="submit">DELETE</button>
+                        <button class="bttn" type="submit"> EDIT</button>
+                    </div>
+
+                </div> -->
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let udata = document.getElementById('userdata')
+    let parentdiv = document.getElementById('container')
+
+    console.log(udata);
+    let btn = document.getElementById('button')
+    btn.addEventListener("click", (e) => {
+        e.preventDefault()
+        let input = udata.value
+        input = input.trim()
+        console.log(input);
+        if (input === "" || input === " ") {
+            alert('please enter your task')
+            return
+        }
+        udata.value = ""
+        let task = document.createElement('div')
+        task.classList.add('task1')
+        task.innerHTML = `
+                    <h3>${input}</h3>
+                    <div class="btn">
+                        <button id="dbtn" class="bttn" type="submit">DELETE</button>
+                        <button class="edit" type="submit"> EDIT</button>
+                    </div>
+                        `
+        parentdiv.appendChild(task)
+
+
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains('bttn')) {
+                e.target.parentElement.parentElement.remove()
+            }
+
+        })
+        let h3 = document.querySelector('h3')
+        document.addEventListener("click", (e) => {
+ if (e.target.classList.contains('edit')) {
+e.target.parentElement.parentElemen.child(h3)
+ }
+
+console.log(e);
+
+
+
+        })
+    })
+
+</script>
+
+</html>
