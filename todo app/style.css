@@ -4,8 +4,16 @@
     box-sizing: border-box;
 }
 
+body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+h1 {
+   
+    color: white;
+}
+
 .container {
-    background: grey;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,27 +22,43 @@
 }
 
 .todo {
-    width: 70%;
-    background: white;
+    width: 40%;
+    height: auto;
     display: flex;
     flex-direction: column;
     /* align-items: center; */
     text-align: center;
     padding: 10px 15px;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
 
 }
 
 input {
+    color: white;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.486);
+    background-color: transparent;
     margin: 15px 0px;
-    padding: 8px;
+    padding: 14px;
     width: 100%;
 
 }
 
+input:focus {
+    border: 2px solid rgb(255, 255, 255);
+    /* background-color: rgb(231, 231, 231); */
+    outline: none;
+}
+
 button {
     width: 20%;
-    background: black;
-    color: white;
+    background: #f1fa8c;
+    color: #000000;
     font-weight: bold;
     outline: none;
     border: none;
@@ -44,12 +68,18 @@ button {
 
 
 .task1 {
+    color: white;
     margin: 15px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid rgba(255, 255, 255, 0.486);
+    border-radius: 20px;
+}
+
+::placeholder {
+    color: white;
 }
 
 .btn {
@@ -73,4 +103,21 @@ button {
     padding: 6px 12px;
     min-width: 80px;
     cursor: pointer;
+}
+
+.task h3 {
+    font-size: 0.8rem;
+    font-family: sans-serif;
+    font-weight: 500;
+    word-break: break-all;
+    text-align: left;
+    display: block;
+    width: 100%;
+    overflow-wrap: break-word;
+    padding: 0 10px;
+
+}
+
+.task h3:active {
+    color: rgb(237, 250, 118);
 }
