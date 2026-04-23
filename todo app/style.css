@@ -35,7 +35,10 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.2);
 
 }
-
+form{
+    display: flex;
+    flex-direction: column;
+}
 input {
     color: white;
     border-radius: 20px;
@@ -57,7 +60,7 @@ input:focus {
 
 button {
     width: 20%;
-    background: #f1fa8c;
+    background: #ffe657;
     color: #000000;
     font-weight: bold;
     outline: none;
