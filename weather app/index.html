@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+
+
+<body>
+    <div class="container">
+        <form action="">
+            <input id="inputfield" type="text" placeholder="Search City ">
+            <button class="btnn" type="submit" id="btn"><i class="fa-brands fa-sistrix"></i></button>
+        </form>
+        <div class="miancon" id="maindiv">
+            <div class="margin">
+                <img src="./images/snow.png" alt="">
+                <div class="centigrate">22°C</div>
+                <div class="city">karchi</div>
+            </div>
+
+            <div class="weather">
+                <div class="col">
+                    <img src="./images/humidity.png" alt="">
+                    <div>
+                        <h3>64%</h3>
+                        <p>humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="./images/wind.png" alt="">
+                    <div>
+                        <h3>18km/h</h3>
+                        <p>wind speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="tech.js?v=1.1"></script> -->
+    <script>
+        let input = document.getElementById('inputfield')
+        let botn = document.getElementById('btn')
+        let main = document.getElementById('maindiv')
+
+
+        botn.addEventListener("click", (e) => {
+            e.preventDefault()
+
+            let value = input.value
+            if (value === '' || value === ' ') {
+                alert("Please Enter City Name")
+
+                return
+            }
+
+
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=dc442d07fdb531bb62b18d3dad4f83c2&units=metric`)
+                .then(res => res.json())
+                .then((data) => {
+                    if (data.cod !== 200) {
+                        alert('City Not Found')
+                        return
+                    }
+
+                    let imgpath = "./images/snow.png"
+                    if (data.weather[0].main === "Clouds") {
+                        imgpath = "./images/clouds.png"
+                    } else if (data.weather[0].main === "Rain") {
+                        imgpath = "./images/rain.png"
+                    } else if (data.weather[0].main === "Clear") {
+                        imgpath = "./images/clear.png"
+                    } else if (data.weather[0].main === "Snow") {
+                        imgpath = "./images/snow.png"
+                    } else if (data.weather[0].main === "mist" || data.weather[0].main === "Haze" || data.weather[0].main === "Smoke") {
+                        imgpath = "./images/mist.png"
+
+                    } else if (data.weather[0].main === "Drizzle") {
+                        imgpath = "./images/drizzle.png"
+                    }
+                    main.innerHTML = `
+              <div class="margin">
+                <img src="${imgpath}" alt="">
+                <div class="centigrate">${data.main.temp}°C</div>
+                <div class="city">${data.name}</div>
+            </div>
+
+            <div class="weather">
+                <div class="col">
+                    <img src="./images/humidity.png" alt="">
+                    <div>
+                        <h3>${data.main.humidity}%</h3>
+                        <p>humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="./images/wind.png" alt="">
+                    <div>
+                        <h3>${(data.wind.speed * 3.6).toFixed(1)}km/h</h3>
+                        <p>wind speed</p>
+                    </div>
+                </div>
+            </div>
+            
+            `
+                    console.log(data.wind.speed);
+
+
+                });
+
+            input.value = ''
+
+
+        })
+    </script>
+</body>
+
+</html>
